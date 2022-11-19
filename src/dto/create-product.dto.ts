@@ -11,6 +11,15 @@ export class CreateProductDto {
     readonly price: number;
 
     @IsNumber()
-    readonly rank: number;
+    readonly rating: number;
+
+    @IsString()
+    readonly description: string;
+
+    @IsString()
+    readonly category: string;
+
+    @IsString()
+    readonly image: string;
 
 }

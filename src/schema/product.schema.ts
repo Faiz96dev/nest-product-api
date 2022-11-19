@@ -10,7 +10,18 @@ export class Product {
     price: number;
 
     @Prop()
-    rank: number;
+    rating: number;
+
+    @Prop()
+    description: string;
+
+    @Prop()
+    image: string;
+
+    @Prop()
+    category: string;
+
+
 
 
 }

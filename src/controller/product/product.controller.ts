@@ -10,12 +10,14 @@ export class ProductController {
     @Post()
     async createProduct(@Res() response, @Body() createProductDto: CreateProductDto) {
         try {
+            console.log('createProductDto', createProductDto)
             const newProduct = await this.productService.createProduct(createProductDto);
             return response.status(HttpStatus.CREATED).json({
                 message: 'Product has been created successfully',
                 newProduct,
             });
         } catch (err) {
+            console.log(err)
             return response.status(HttpStatus.BAD_REQUEST).json({
                 statusCode: 400,
                 message: 'Error: Product not created!',
@@ -29,7 +31,6 @@ export class ProductController {
         @Param('id') productId: string,
         @Body() updateProductDto: UpdateProductDto) {
         try {
-            console.log('updateProduct')
             const existingProduct = await this.productService.updateProduct(productId, updateProductDto);
             return response.status(HttpStatus.OK).json({
                 message: 'Product has been successfully updated',
@@ -43,7 +44,6 @@ export class ProductController {
     @Get()
     async getProducts(@Res() response) {
         try {
-        console.log('GET')
             const productData = await this.productService.getAllProducts();
             return response.status(HttpStatus.OK).json({
                 message: 'All products data found successfully',
