@@ -7,9 +7,10 @@ import { ProductSchema } from './schema/product.schema';
 import { ProductService } from './service/product/product.service';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://localhost:27017',{dbName: 'productdb'}),
+  imports: [MongooseModule.forRoot(`mongodb+srv://faiz:${process.env.DB_PASSWORD}@cluster0.9fp7uss.mongodb.net/?retryWrites=true&w=majority`,{dbName: 'productdb'}),
   MongooseModule.forFeature([{ name: 'Product', schema: ProductSchema }])],
   controllers: [AppController,ProductController],
   providers: [AppService,ProductService],
 })
+// hJyimMJUaulYUhsh
 export class AppModule {}
