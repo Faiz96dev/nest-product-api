@@ -10,8 +10,8 @@ export class ProductController {
     @Post()
     async createProduct(@Res() response, @Body() createProductDto: CreateProductDto) {
         try {
-            console.log('createProductDto', createProductDto)
             const newProduct = await this.productService.createProduct(createProductDto);
+            response.set('Access-Control-Allow-Origin', '*');
             return response.status(HttpStatus.CREATED).json({
                 message: 'Product has been created successfully',
                 newProduct,
@@ -32,6 +32,7 @@ export class ProductController {
         @Body() updateProductDto: UpdateProductDto) {
         try {
             const existingProduct = await this.productService.updateProduct(productId, updateProductDto);
+            response.set('Access-Control-Allow-Origin', '*');
             return response.status(HttpStatus.OK).json({
                 message: 'Product has been successfully updated',
                 existingProduct,
@@ -45,6 +46,7 @@ export class ProductController {
     async getProducts(@Res() response) {
         try {
             const productData = await this.productService.getAllProducts();
+            response.set('Access-Control-Allow-Origin', '*');
             return response.status(HttpStatus.OK).json({
                 message: 'All products data found successfully',
                 productData,
@@ -58,6 +60,7 @@ export class ProductController {
     async getProduct(@Res() response, @Param('id') productId: string) {
         try {
             const existingProduct = await this.productService.getProduct(productId);
+            response.set('Access-Control-Allow-Origin', '*');
             return response.status(HttpStatus.OK).json({
                 message: 'Product found successfully',
                 existingProduct,
@@ -71,6 +74,7 @@ export class ProductController {
     async deleteProduct(@Res() response, @Param('id') productId: string) {
         try {
             const deletedProduct = await this.productService.deleteProduct(productId);
+            response.set('Access-Control-Allow-Origin', '*');
             return response.status(HttpStatus.OK).json({
                 message: 'Product deleted successfully',
                 deletedProduct,
